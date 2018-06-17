@@ -14,6 +14,8 @@ export interface IQuestion {
   glossaryText: string;
 };
 
+export type AnswerMap = Map<IQuestion, number>;
+
 export const answers: number[] = [
   -3,
   -2,

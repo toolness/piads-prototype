@@ -5,7 +5,18 @@ import logo from './logo.svg';
 import * as piads from './piads';
 import Question from './Question';
 
-class App extends React.Component {
+interface IAppState {
+  answers: piads.AnswerMap
+}
+
+class App extends React.Component<{}, IAppState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      answers: new Map()
+    };
+  }
+
   public render() {
     const deviceName = '<INSERT DEVICE NAME HERE>';
 
@@ -26,13 +37,29 @@ class App extends React.Component {
             an "X" in the appropriate box to show how you are affected by using the {deviceName}.
           </p>
           <ol className="App-questions">
-          {piads.questions.map(question => (
-            <Question key={question.number} {...question} />
-          ))}
+          {piads.questions.map(question => {
+            const handleChange = (answer: number) => {
+              this._handleChange(question, answer);
+            };
+
+            return <Question
+              key={question.number}
+              question={question}
+              answer={this.state.answers.get(question)}
+              onChange={handleChange}
+            />
+          })}
           </ol>
         </div>
       </div>
     );
+  }
+
+  private _handleChange(question: piads.IQuestion, answer: number) {
+    const newAnswers = new Map(this.state.answers);
+    newAnswers.set(question, answer);
+    this.setState({ answers: newAnswers });
+    console.log(`woooot ${question.number} ${answer}`);
   }
 }
 
