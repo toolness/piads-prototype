@@ -14,8 +14,6 @@ export interface IQuestion {
   glossaryText: string;
 };
 
-export type AnswerMap = Map<IQuestion, number>;
-
 export const answers: number[] = [
   -3,
   -2,
@@ -187,3 +185,40 @@ export const questions: IQuestion[] = [
     text: 'Ability to take advantage of opportunities',
   },
 ];
+
+function countSubscale(subscale: Subscale): number {
+  return questions.filter(q => q.subscale === subscale).length;
+}
+
+const subscaleCounts: ISubscaleTotals = {
+  adaptability: countSubscale('adaptability'),
+  competence: countSubscale('competence'),
+  selfEsteem: countSubscale('selfEsteem')
+};
+
+// Note that this won't transpile down to ES5 because
+// transpilers like Babel don't support extending
+// built-in classes: https://stackoverflow.com/a/29436039/2422398
+export class AnswerMap extends Map<IQuestion, number> {
+  public getTotals(): ISubscaleTotals {
+    return {
+      adaptability: this.sumSubscale('adaptability') / subscaleCounts.adaptability,
+      competence: this.sumSubscale('competence') / subscaleCounts.competence,
+      selfEsteem: this.sumSubscale('selfEsteem') / subscaleCounts.selfEsteem
+    };
+  }
+
+  private sumSubscale(subscale: Subscale): number {
+    return questions.reduce((sum, q) => {
+      const answer = this.get(q);
+      if (answer !== undefined && q.subscale === subscale) {
+        if (q.isNegative) {
+          return sum + -answer;
+        } else {
+          return sum + answer;
+        }
+      }
+      return sum;
+    }, 0);
+  }
+}

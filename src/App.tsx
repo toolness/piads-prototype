@@ -13,12 +13,14 @@ class App extends React.Component<{}, IAppState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      answers: new Map()
+      answers: new piads.AnswerMap()
     };
   }
 
   public render() {
     const deviceName = '<INSERT DEVICE NAME HERE>';
+    const totals = this.state.answers.getTotals();
+    const fractionDigits = 2;
 
     return (
       <div className="App">
@@ -50,13 +52,17 @@ class App extends React.Component<{}, IAppState> {
             />
           })}
           </ol>
+          <h2>Subscale scores</h2>
+          <p>Competence: {totals.competence.toFixed(fractionDigits)}</p>
+          <p>Adaptability: {totals.adaptability.toFixed(fractionDigits)}</p>
+          <p>Self-Esteem: {totals.selfEsteem.toFixed(fractionDigits)}</p>
         </div>
       </div>
     );
   }
 
   private _handleChange(question: piads.IQuestion, answer: number) {
-    const newAnswers = new Map(this.state.answers);
+    const newAnswers = new piads.AnswerMap(this.state.answers);
     newAnswers.set(question, answer);
     this.setState({ answers: newAnswers });
     console.log(`woooot ${question.number} ${answer}`);
