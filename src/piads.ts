@@ -13,6 +13,16 @@ export interface IQuestion {
   isNegative?: boolean;
 };
 
+export const answers: number[] = [
+  -3,
+  -2,
+  -1,
+  0,
+  1,
+  2,
+  3
+];
+
 export const questions: IQuestion[] = [
   {
     number: 1,

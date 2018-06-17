@@ -19,10 +19,24 @@
 }
 
 .App-intro {
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 1em 0;
+}
+
+.App-questions {
   font-size: large;
   text-align: left;
   display: inline-block;
   margin: 0 auto;
+}
+
+.App-questions li {
+  padding-bottom: 1em;
+}
+
+.scale-description {
+  color: gray;
 }
 
 @keyframes App-logo-spin {
