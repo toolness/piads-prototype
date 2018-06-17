@@ -21,6 +21,7 @@ export default class Question extends React.Component<piads.IQuestion, {}> {
               );
             })}
             <span className="scale-description">Increases</span>
+            <aside>{this.props.glossaryText}</aside>
           </div>
         </fieldset>
       </li>

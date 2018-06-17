@@ -35,6 +35,12 @@
   padding-bottom: 1em;
 }
 
+.App-questions aside {
+  padding-top: 1em;
+  font-size: small;
+  color: gray;
+}
+
 .scale-description {
   color: gray;
 }
