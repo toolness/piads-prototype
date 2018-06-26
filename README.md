@@ -1,3 +1,5 @@
+This is a prototype for a web-based embeddable [Psychosocial Impact of Assistive Devices (PIADS)](https://www.sralab.org/rehabilitation-measures/psychosocial-impact-assistive-devices) questionnaire.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
