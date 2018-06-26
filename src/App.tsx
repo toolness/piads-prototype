@@ -26,7 +26,7 @@ class App extends React.Component<{}, IAppState> {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to PIADS</h1>
+          <h1 className="App-title">Welcome to PIADS SERVICE WORKERS ARE EVIL</h1>
         </header>
         <div>
           <p className="App-intro">
